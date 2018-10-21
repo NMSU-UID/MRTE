@@ -2,19 +2,14 @@ package mrte.trollalarm;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity{
-
+public class MainActivity extends AppCompatActivity {
     Button btnSet;
     EditText etVal;
     @Override
@@ -37,10 +32,5 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
-
-
-
-
-
 
 }
