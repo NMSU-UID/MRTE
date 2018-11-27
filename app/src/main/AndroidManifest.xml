@@ -2,10 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mrte.trollalarm">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Troll Alarm"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -15,8 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".Alarm" >
-        </receiver>
+
+        <service
+            android:name=".AlarmService"
+            android:enabled="true" />
+
+        <receiver android:name=".AlarmReceiver"/>
+
     </application>
 
 </manifest>
