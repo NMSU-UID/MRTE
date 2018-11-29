@@ -5,18 +5,23 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
 import android.widget.ToggleButton;
 
 import java.util.Calendar;
 
+import static mrte.trollalarm.AlarmReceiver.ringtone;
+
+
 public class MainActivity extends AppCompatActivity {
+    public int temp;
 
     AlarmManager alarmManager;
     private PendingIntent pendingIntent;
@@ -24,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private static MainActivity inst;
     private TextView alarmTextView;
     Calendar calendar = null;
+
 
     public static MainActivity instance() {
         return inst;
@@ -36,11 +42,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        alarmTimePicker = (TimePicker) findViewById(R.id.alarmTimePicker);
-        alarmTextView = (TextView) findViewById(R.id.alarmText);
+         alarmTimePicker = (TimePicker) findViewById(R.id.alarmTimePicker);
+         alarmTextView = (TextView) findViewById(R.id.alarmText);
+
+        Button submitBtn = (Button) findViewById(R.id.submitBtn);
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText firstNumEditText = (EditText) findViewById(R.id.firstNumEditText);
+                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
+
+                int correctAnswer = 100;
+                int inputAnswer = Integer.parseInt(firstNumEditText.getText().toString());
+                temp = inputAnswer;
+                inst.temp = inputAnswer;
+
+
+                if (inputAnswer == correctAnswer) {
+                    resultTextView.setText("Correct!");
+                    inst.temp = inputAnswer;
+                    ringtone.stop();
+
+
+                }
+                else {
+                    resultTextView.setText("Incorrect!");
+                    inst.temp = inputAnswer;
+                }
+
+
+
+            }
+        });
 
     }
 

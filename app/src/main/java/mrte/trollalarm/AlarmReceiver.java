@@ -12,13 +12,15 @@ import android.support.v4.content.WakefulBroadcastReceiver;
 
 public class AlarmReceiver extends WakefulBroadcastReceiver {
 
-    Ringtone ringtone;
+    public static Ringtone ringtone;
+
+
 
     @Override
     public void onReceive(final Context context, Intent intent) {
         //this will update the UI with message
         MainActivity inst = MainActivity.instance();
-        inst.setAlarmText("Wake up! Wake up!");
+        inst.setAlarmText("Enter '25 * 4' to turn off!");
 
         //this will sound the alarm tone
         //this will sound the alarm once, if you wish to
@@ -32,13 +34,15 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
 
         //After 1s stop the alarm
         // You can adjust the time depending upon your requirement.
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 ringtone.stop();
             }
-        }, 1000);
+        }, 1000000000);
+
 
         //this will send a notification message
         ComponentName comp = new ComponentName(context.getPackageName(),
