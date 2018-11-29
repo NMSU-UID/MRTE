@@ -34,39 +34,40 @@
         android:layout_marginTop="20dp"
         android:layout_below="@+id/alarmToggle" />
 
-    <EditText
-        android:id="@+id/firstNumEditText"
-        android:layout_width="154dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/alarmText"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="13dp"
-        android:ems="10"
-        android:hint="Enter the answer."
-        android:inputType="number" />
+    <!--<EditText-->
+        <!--android:id="@+id/firstNumEditText"-->
+        <!--android:layout_width="154dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignTop="@+id/alarmText"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_marginStart="0dp"-->
+        <!--android:layout_marginTop="13dp"-->
+        <!--android:ems="10"-->
+        <!--android:hint="Enter the answer."-->
+        <!--android:inputType="number" />-->
 
     <Button
-        android:id="@+id/submitBtn"
+        android:id="@+id/MathBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/firstNumEditText"
+        android:layout_alignTop="@+id/alarmText"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="0dp"
-        android:text="SUBMIT"
-        tools:text="SUBMIT" />
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:text="Math"
+        tools:text="Math" />
 
     <TextView
         android:id="@+id/resultTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="74dp"
+        android:layout_height="36dp"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="103dp"
-        android:text="Result" />
+        android:layout_marginEnd="297dp"
+        android:layout_marginRight="297dp"
+        android:layout_marginBottom="11dp"
+        android:text="" />
 
 </RelativeLayout>

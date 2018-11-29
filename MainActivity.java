@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -23,12 +24,15 @@ import static mrte.trollalarm.AlarmReceiver.ringtone;
 public class MainActivity extends AppCompatActivity {
     public int temp;
 
+    //Class Variables
     AlarmManager alarmManager;
     private PendingIntent pendingIntent;
     private TimePicker alarmTimePicker;
     private static MainActivity inst;
     private TextView alarmTextView;
     Calendar calendar = null;
+    Button MathBtn;
+    TextView textView;
 
 
     public static MainActivity instance() {
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         inst = this;
     }
 
+    //Create Alarm and Math instances
     @Override
      protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,30 +53,32 @@ public class MainActivity extends AppCompatActivity {
          alarmTimePicker = (TimePicker) findViewById(R.id.alarmTimePicker);
          alarmTextView = (TextView) findViewById(R.id.alarmText);
 
-        Button submitBtn = (Button) findViewById(R.id.submitBtn);
-        submitBtn.setOnClickListener(new View.OnClickListener() {
+        MathBtn = (Button) findViewById(R.id.MathBtn);
+        textView = findViewById(R.id.resultTextView);
+        MathBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText firstNumEditText = (EditText) findViewById(R.id.firstNumEditText);
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-
-                int correctAnswer = 100;
-                int inputAnswer = Integer.parseInt(firstNumEditText.getText().toString());
-                temp = inputAnswer;
-                inst.temp = inputAnswer;
-
-
-                if (inputAnswer == correctAnswer) {
-                    resultTextView.setText("Correct!");
-                    inst.temp = inputAnswer;
-                    ringtone.stop();
-
-
-                }
-                else {
-                    resultTextView.setText("Incorrect!");
-                    inst.temp = inputAnswer;
-                }
+                startActivityForResult(new Intent(getApplicationContext(), MathActivity.class), 1000);
+//                EditText firstNumEditText = (EditText) findViewById(R.id.firstNumEditText);
+//                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
+//
+//                int correctAnswer = 100;
+//                int inputAnswer = Integer.parseInt(firstNumEditText.getText().toString());
+//                temp = inputAnswer;
+//                inst.temp = inputAnswer;
+//
+//
+//                if (inputAnswer == correctAnswer) {
+//                    resultTextView.setText("Correct!");
+//                    inst.temp = inputAnswer;
+//                    ringtone.stop();
+//
+//
+//                }
+//                else {
+//                    resultTextView.setText("Incorrect!");
+//                    inst.temp = inputAnswer;
+//                }
 
 
 
@@ -79,6 +86,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    //TODO: figure out how to get this to override the result and display if the user answer is correct.
+    protected void onActivityResult(int request, int result, Nullable Intent) {
+        if(request == 1000) {
+            if(result == RESULT_OK) {
+                textView.setText("Correct!");
+            } else {
+                textView.setText("Incorrect.");
+            }
+        }
+    }
+
 
     @TargetApi(Build.VERSION_CODES.M)
     public void onToggleClicked(View view) {
