@@ -12,7 +12,9 @@ import android.support.v4.content.WakefulBroadcastReceiver;
 
 public class AlarmReceiver extends WakefulBroadcastReceiver {
 
-    Ringtone ringtone;
+    public static Ringtone ringtone;
+
+
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -32,6 +34,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
 
         //After 1s stop the alarm
         // You can adjust the time depending upon your requirement.
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -39,6 +42,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
                 ringtone.stop();
             }
         }, 1000000000);
+
 
         //this will send a notification message
         ComponentName comp = new ComponentName(context.getPackageName(),

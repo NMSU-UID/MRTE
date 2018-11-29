@@ -17,7 +17,11 @@ import android.widget.ToggleButton;
 
 import java.util.Calendar;
 
+import static mrte.trollalarm.AlarmReceiver.ringtone;
+
+
 public class MainActivity extends AppCompatActivity {
+    public int temp;
 
     AlarmManager alarmManager;
     private PendingIntent pendingIntent;
@@ -25,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private static MainActivity inst;
     private TextView alarmTextView;
     Calendar calendar = null;
+
 
     public static MainActivity instance() {
         return inst;
@@ -37,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        alarmTimePicker = (TimePicker) findViewById(R.id.alarmTimePicker);
-        alarmTextView = (TextView) findViewById(R.id.alarmText);
+         alarmTimePicker = (TimePicker) findViewById(R.id.alarmTimePicker);
+         alarmTextView = (TextView) findViewById(R.id.alarmText);
 
         Button submitBtn = (Button) findViewById(R.id.submitBtn);
         submitBtn.setOnClickListener(new View.OnClickListener() {
@@ -52,12 +57,20 @@ public class MainActivity extends AppCompatActivity {
 
                 int correctAnswer = 100;
                 int inputAnswer = Integer.parseInt(firstNumEditText.getText().toString());
+                temp = inputAnswer;
+                inst.temp = inputAnswer;
+
 
                 if (inputAnswer == correctAnswer) {
                     resultTextView.setText("Correct!");
+                    inst.temp = inputAnswer;
+                    ringtone.stop();
+
+
                 }
                 else {
                     resultTextView.setText("Incorrect!");
+                    inst.temp = inputAnswer;
                 }
 
 
