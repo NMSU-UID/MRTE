@@ -5,13 +5,14 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
 import android.widget.ToggleButton;
 
 import java.util.Calendar;
@@ -41,6 +42,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         alarmTimePicker = (TimePicker) findViewById(R.id.alarmTimePicker);
         alarmTextView = (TextView) findViewById(R.id.alarmText);
+
+        Button submitBtn = (Button) findViewById(R.id.submitBtn);
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText firstNumEditText = (EditText) findViewById(R.id.firstNumEditText);
+                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
+
+                int correctAnswer = 100;
+                int inputAnswer = Integer.parseInt(firstNumEditText.getText().toString());
+
+                if (inputAnswer == correctAnswer) {
+                    resultTextView.setText("Correct!");
+                }
+                else {
+                    resultTextView.setText("Incorrect!");
+                }
+
+
+
+            }
+        });
 
     }
 
